@@ -1,0 +1,63 @@
+export const allSymbols = [
+  "\u{1F414}",
+  "\u{1F354}",
+  "\u{1F353}",
+  "\u{1F9C1}",
+  "\u{1F34B}",
+  "\u{1F955}",
+  "\u{1F950}",
+  "\u{1F369}",
+  "\u{1F95D}",
+  "\u{1F96A}",
+  "\u{1F95E}",
+  "\u{1F34E}",
+  "\u{1F36A}",
+  "\u{1F35F}",
+  "\u{1F355}",
+  "\u{1F95F}",
+  "\u{1F32D}",
+  "\u{1F96F}",
+  "\u{1F966}",
+  "\u{1FAD1}",
+  "\u{1F965}",
+  "\u{1F96C}",
+  "\u{1F952}",
+  "\u{1F34A}",
+  "\u{1F349}",
+  "\u{1F34D}",
+  "\u{1F347}",
+  "\u{1FAD0}",
+  "\u{1F351}",
+  "\u{1F965}",
+  "\u{1FAD8}",
+  "\u{1F9C7}",
+  "\u{1F9C8}",
+  "\u{1F9C6}",
+  "\u{1F9C4}",
+  "\u{1F96D}",
+  "\u{1F95B}",
+  "\u{1F344}",
+  "\u{1F330}",
+  "\u{1F33D}",
+];
+
+export const levels = [
+  { level: 1, pairs: 6, cards: 12, columns: 4, rows: 3, timeLimit: 45 },
+  { level: 2, pairs: 8, cards: 16, columns: 4, rows: 4, timeLimit: 50 },
+  { level: 3, pairs: 10, cards: 20, columns: 5, rows: 4, timeLimit: 56 },
+  { level: 4, pairs: 12, cards: 24, columns: 6, rows: 4, timeLimit: 64 },
+  { level: 5, pairs: 15, cards: 30, columns: 6, rows: 5, timeLimit: 74 },
+  { level: 6, pairs: 18, cards: 36, columns: 6, rows: 6, timeLimit: 86 },
+];
+
+export const gameTime = 45;
+export const playerStatsStorageKey = "memory-card-player-stats";
+
+export const shopItems = {
+  "extra-time": { price: 12 },
+  "reveal-cards": { price: 24 },
+  "hint-pair": { price: 28 },
+  "second-chance": { price: 34 },
+  "bonus-score": { price: 18 },
+  "shuffle-board": { price: 22 },
+};

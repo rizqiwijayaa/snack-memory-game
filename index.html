@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="menu-screen" id="mainMenu" aria-hidden="false">
+    <div class="menu-decor menu-decor-left" aria-hidden="true">
+      <span class="decor-chip">🍓</span>
+      <span class="decor-chip">🍋</span>
+      <span class="decor-chip">🧁</span>
+      <span class="decor-chip">🥐</span>
+    </div>
+    <div class="menu-decor menu-decor-right" aria-hidden="true">
+      <span class="decor-chip">🥕</span>
+      <span class="decor-chip">🍔</span>
+      <span class="decor-chip">🍪</span>
+      <span class="decor-chip">🍟</span>
+      <span class="decor-chip">🍉</span>
+    </div>
+    <div class="menu-shell">
+      <div class="menu-card">
+        <p class="menu-kicker">Memory Match</p>
+        <h1 class="menu-title">Snack Memory</h1>
+        <p class="menu-text">Match the food cards, earn coins, and climb through every level.</p>
+        <div class="menu-actions">
+          <button class="menu-button menu-button-primary" id="startGameButton" type="button">Start Game</button>
+          <button class="menu-button" id="continueGameButton" type="button">Continue</button>
+          <button class="menu-button" id="menuStatsButton" type="button">Statistics</button>
+          <button class="menu-button" id="menuSettingsButton" type="button">Settings</button>
+          <button class="menu-button" id="menuCreditsButton" type="button">Credits</button>
+        </div>
+      </div>
+
+      <div class="menu-info-card">
+        <p class="menu-info-kicker" id="menuPanelSubtitle">Choose an option</p>
+        <h2 class="menu-info-title" id="menuPanelTitle">Welcome</h2>
+        <div class="menu-info-content" id="menuPanelContent">
+          <p>Start the game when you are ready, or open the menu sections to check your stats, adjust sound, and read the credits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="game-screen hidden" id="gameScreen">
+    <aside class="stats-panel" aria-labelledby="statsTitle">
+      <div class="stats-header">
+        <p class="stats-kicker">Player</p>
+        <h2 class="stats-title" id="statsTitle">Statistics</h2>
+        <p class="stats-subtitle">Saved in this browser</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stats-item">
+          <p class="stats-label">Games Played</p>
+          <p class="stats-value" id="gamesPlayedStat">0</p>
+        </div>
+        <div class="stats-item">
+          <p class="stats-label">Best Score</p>
+          <p class="stats-value" id="bestScoreStat">0</p>
+        </div>
+        <div class="stats-item">
+          <p class="stats-label">Highest Level</p>
+          <p class="stats-value" id="highestLevelStat">1</p>
+        </div>
+        <div class="stats-item">
+          <p class="stats-label">Longest Win Streak</p>
+          <p class="stats-value" id="longestWinStreakStat">0</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="bg-decor bg-decor-top" aria-hidden="true">
+      <span class="decor-chip">🍒</span>
+      <span class="decor-chip">🧃</span>
+      <span class="decor-chip">🍇</span>
+    </div>
+    <div class="bg-decor bg-decor-bottom-left" aria-hidden="true">
+      <span class="decor-chip">🥨</span>
+      <span class="decor-chip">🍎</span>
+      <span class="decor-chip">🧇</span>
+    </div>
+    <div class="bg-decor bg-decor-right" aria-hidden="true">
+      <span class="decor-chip">🥕</span>
+      <span class="decor-chip">🍔</span>
+      <span class="decor-chip">🍪</span>
+      <span class="decor-chip">🍟</span>
+      <span class="decor-chip">🍉</span>
+    </div>
+
+    <main class="app-shell">
+      <section class="game-panel">
+        <header class="topbar">
+          <div class="scorebox">
+            <p class="score-label">Score</p>
+            <p class="score-value" id="score">0</p>
+            <div class="coin-row">
+              <span class="coin-icon" aria-hidden="true"></span>
+              <span id="coins">0</span>
+            </div>
+            <p class="level-label" id="levelLabel">Level 1 - 6 pairs</p>
+            <p class="moves-label">Moves: <span id="moves">0</span></p>
+          </div>
+
+          <div class="top-actions">
+            <button class="icon-button shop-trigger" id="shopButton" type="button" aria-label="Open shop">$</button>
+            <button class="icon-button" id="pauseButton" type="button" aria-label="Pause game">II</button>
+          </div>
+        </header>
+
+        <section class="hero-panel">
+          <div class="timer-box">
+            <p class="timer-title">Time</p>
+            <div class="timer-track" aria-hidden="true">
+              <div class="timer-fill" id="timerFill"></div>
+            </div>
+            <p class="timer-value" id="timeValue">45s</p>
+          </div>
+
+          <div class="preview-box" id="messageBox">
+            <p class="preview-title">Find the pairs</p>
+            <p class="preview-text">Open two cards with the same picture before time runs out.</p>
+          </div>
+        </section>
+
+        <section class="board-wrap">
+          <div class="card-grid" id="cardGrid" aria-live="polite"></div>
+        </section>
+
+        <footer class="footer-actions">
+          <button class="secondary-button" id="restartButton" type="button">Restart</button>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <section class="game-over-screen hidden" id="gameOverScreen" aria-hidden="true">
+    <div class="result-decor result-decor-left" aria-hidden="true">
+      <span class="decor-chip">🍓</span>
+      <span class="decor-chip">🍋</span>
+      <span class="decor-chip">🧁</span>
+      <span class="decor-chip">🥨</span>
+    </div>
+    <div class="result-decor result-decor-right" aria-hidden="true">
+      <span class="decor-chip">🥕</span>
+      <span class="decor-chip">🍔</span>
+      <span class="decor-chip">🍪</span>
+      <span class="decor-chip">🍟</span>
+      <span class="decor-chip">🍉</span>
+    </div>
+    <div class="game-over-card">
+      <p class="menu-kicker">Round Ended</p>
+      <h1 class="game-over-title" id="gameOverTitle">Game Over</h1>
+      <div class="game-over-summary" id="gameOverSummary">
+        <p>Your last run summary will appear here.</p>
+      </div>
+      <div class="game-over-actions">
+        <button class="menu-button menu-button-primary" id="playAgainButton" type="button">Play Again</button>
+        <button class="menu-button" id="backToHomeButton" type="button">Back to Home</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="victory-screen hidden" id="victoryScreen" aria-hidden="true">
+    <div class="result-decor result-decor-left" aria-hidden="true">
+      <span class="decor-chip">🍒</span>
+      <span class="decor-chip">🧃</span>
+      <span class="decor-chip">🍇</span>
+      <span class="decor-chip">🥐</span>
+    </div>
+    <div class="result-decor result-decor-right" aria-hidden="true">
+      <span class="decor-chip">🥕</span>
+      <span class="decor-chip">🍔</span>
+      <span class="decor-chip">🍪</span>
+      <span class="decor-chip">🍟</span>
+      <span class="decor-chip">🍉</span>
+    </div>
+    <div class="victory-card">
+      <p class="menu-kicker">Champion Run</p>
+      <h1 class="victory-title" id="victoryTitle">You Beat The Game</h1>
+      <div class="victory-summary" id="victorySummary">
+        <p>Your winning summary will appear here.</p>
+      </div>
+      <div class="victory-actions">
+        <button class="menu-button menu-button-primary" id="victoryPlayAgainButton" type="button">Play Again</button>
+        <button class="menu-button" id="victoryBackHomeButton" type="button">Back to Home</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="overlay hidden" id="overlay">
+    <div class="overlay-card">
+      <p class="overlay-tag" id="overlayTag">Paused</p>
+      <h1 class="overlay-title" id="overlayTitle">Take a breath</h1>
+      <p class="overlay-text" id="overlayText">Tap continue when you are ready to keep matching.</p>
+      <div class="overlay-actions">
+        <button class="secondary-button hidden" id="overlayHomeButton" type="button">Back to Home</button>
+        <button class="primary-button" id="overlayButton" type="button">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay hidden" id="shopModal" aria-hidden="true">
+    <div class="shop-panel modal-card">
+      <div class="modal-topbar">
+        <div class="shop-header">
+          <p class="shop-title">Shop</p>
+          <p class="shop-subtitle">Use coins for one-time powers</p>
+        </div>
+        <button class="close-button" id="shopCloseButton" type="button" aria-label="Close shop">X</button>
+      </div>
+      <div class="shop-grid">
+        <button class="shop-item" type="button" data-shop-item="extra-time">
+          <span class="shop-item-name"><span class="shop-icon" aria-hidden="true">⏳</span> Extra Time</span>
+          <span class="shop-item-price">10 coins</span>
+        </button>
+        <button class="shop-item" type="button" data-shop-item="reveal-cards">
+          <span class="shop-item-name"><span class="shop-icon" aria-hidden="true">🔍</span> Reveal Cards</span>
+          <span class="shop-item-price">20 coins</span>
+        </button>
+        <button class="shop-item" type="button" data-shop-item="hint-pair">
+          <span class="shop-item-name"><span class="shop-icon" aria-hidden="true">💡</span> Hint Pair</span>
+          <span class="shop-item-price">25 coins</span>
+        </button>
+        <button class="shop-item" type="button" data-shop-item="second-chance">
+          <span class="shop-item-name"><span class="shop-icon" aria-hidden="true">🛡️</span> Second Chance</span>
+          <span class="shop-item-price">30 coins</span>
+        </button>
+        <button class="shop-item" type="button" data-shop-item="bonus-score">
+          <span class="shop-item-name"><span class="shop-icon" aria-hidden="true">⭐</span> Bonus Score</span>
+          <span class="shop-item-price">15 coins</span>
+        </button>
+        <button class="shop-item" type="button" data-shop-item="shuffle-board">
+          <span class="shop-item-name"><span class="shop-icon" aria-hidden="true">🎲</span> Shuffle Board</span>
+          <span class="shop-item-price">20 coins</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
